@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unbranded Loaders - Enhanced</title>
+    <link rel="icon" href="YOUR_LOGO_IMAGE_URL.png" type="image/png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        :root {
+            --bg-dark-1: #141414;
+            --bg-dark-2: #1C1C1C;
+            --bg-dark-3: #1F1F1F;
+            --accent-primary: #1be2f0;
+            --accent-secondary: #1bb5c1;
+            --text-light: #E0E0E0;
+            --text-dark: #FFFFFF;
+            --glow-primary: rgba(27, 226, 240, 0.7);
+            --glow-primary-hover: rgba(27, 226, 240, 1);
+            --shadow-dark: rgba(0, 0, 0, 0.5);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Tomorrow", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            background: linear-gradient(85deg, var(--bg-dark-3), var(--bg-dark-1), var(--bg-dark-2));
+            background-size: 250% 250%;
+            animation: gradientBackground 20s linear infinite;
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 50px 20px;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(28, 28, 28, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-family: "Tomorrow", sans-serif;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            color: var(--accent-primary);
+            font-size: clamp(2rem, 6vw, 3rem);
+            border-right: 0.15em solid var(--accent-primary);
+            animation: typing 3s steps(40, end) forwards,
+                       blink-caret 0.75s step-end infinite;
+            margin: 0 auto 30px auto;
+            text-shadow: 0 0 10px var(--glow-primary);
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: var(--accent-primary); }
+        }
+
+        h1.typing-complete {
+            border-right-color: transparent;
+            animation: none;
+            text-shadow: 0 0 10px var(--glow-primary);
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            color: var(--accent-secondary);
+            text-shadow: 0 0 8px rgba(27, 181, 193, 0.5);
+            animation: fadeInDown 1s ease-out 0.5s backwards;
+        }
+
+        p {
+            margin-bottom: 30px;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            line-height: 1.6;
+            opacity: 0.85;
+            text-shadow: 1px 1px 2px var(--shadow-dark);
+            animation: fadeInUp 1.2s ease-out 0.7s backwards;
+        }
+
+        .category {
+            margin-bottom: 50px;
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            animation: fadeInUp 1.2s ease-out 0.9s backwards;
+        }
+
+        .button-container p.click-me {
+            grid-column: 1 / -1;
+            margin-top: 10px;
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            animation: none;
+            font-weight: 400;
+        }
+
+        .button-container p.click-me a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 5px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .button-container p.click-me a:hover {
+            color: var(--text-dark);
+            text-shadow: 0 0 5px var(--glow-primary);
+        }
+
+        .button {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            padding: 14px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid var(--accent-secondary);
+            color: var(--text-light);
+            background-color: transparent;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        box-shadow 0.3s ease-out,
+                        background-color 0.3s ease-out,
+                        border-color 0.3s ease-out,
+                        color 0.3s ease-out;
+            box-shadow: 0 0 8px rgba(27, 181, 193, 0.4);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .button::after {
+            content: '';
+            position: absolute;
+            left: -150%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(27, 226, 240, 0.25), transparent);
+            transition: left 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .button:hover::after {
+            left: 150%;
+        }
+
+        .button:hover,
+        .button:focus {
+            background-color: var(--accent-primary);
+            color: var(--bg-dark-1);
+            border-color: var(--accent-primary);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0px 6px 20px var(--glow-primary-hover);
+            outline: none;
+        }
+
+        .button:active {
+             transform: translateY(-1px) scale(1.01);
+             box-shadow: 0px 3px 15px var(--glow-primary);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 30px 15px; }
+            .container { padding: 15px; }
+            .button-container {
+                 grid-template-columns: 1fr;
+                 gap: 15px;
+            }
+            h1 { margin-bottom: 20px; }
+            h2 { margin-top: 30px; margin-bottom: 20px;}
+            .button { padding: 12px 20px; font-size: 0.95rem;}
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Unbranded Loaders</h1>
+
+        <div class="category">
+            <h2>MW3/BO6</h2>
+            <div class="button-container">
+                 <a href="https://raw.githubusercontent.com/avod245/1183938967024959659_cloud/main/Auth_NB.exe" class="button">BO6 UNLOCK ALL</a>
+                <a href="https://raw.githubusercontent.com/avod245/1183938967024959659_cloud/main/Loader_LDV2.exe" class="button">MW3/BO6 EXTERNAL CHAIR LDV2</a>
+                <a href="https://raw.githubusercontent.com/avod245/1183938967024959659_cloud/main/LOADER_PG.exe" class="button">MW2/MW3/BO6 EXTERNAL CHAIR PROGRESS</a>
+                <a href="https://raw.githubusercontent.com/avod245/1183938967024959659_cloud/main/t10_zl_mnbvcxz.exe" class="button">BO6/WZ ZENITH INTERNAL CHAIR</a>
+                <a href="https://raw.githubusercontent.com/avod245/1183938967024959659_cloud/main/FORCE_SAVER_TOOL.exe" class="button">BO6/WZ FORCE SAVE TOOL</a>
+                <a href="https://raw.githubusercontent.com/avod245/1183938967024959659_cloud/main/AFKBOT_UNBRANDED.rar" class="button">WZ4 AFK BOT</a>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>OTHERS</h2>
+            <div class="button-container">
+                <a href="https://raw.githubusercontent.com/avod245/1183938967024959659_cloud/main/IRISOptimizerSetup_2.exe" class="button">PC OPTIMIZER V1</a>
+                <a href="https://verse-solutions.gitbook.io/verse-permanent" class="button">HWID PERM WOOFER</a>
+                 <p class="click-me">Not opening? <a href="https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.403-windows-x86-installer" target="_blank" rel="noopener noreferrer">Click Me for .NET Runtime</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const title = document.getElementById('title');
+            const titleAnimationDuration = 3000;
+
+            const timer = setTimeout(() => {
+                if (title) {
+                    title.classList.add('typing-complete');
+                }
+            }, titleAnimationDuration + 200);
+        });
+    </script>
+</body>
+</html>
